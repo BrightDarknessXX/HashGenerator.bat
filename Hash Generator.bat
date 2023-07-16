@@ -1,10 +1,17 @@
 @echo off
-echo Enter string here!>hash.txt
-start hash.txt
+
 :0
-set /p hash="Hash: "
+set /p hash="Hash algorythm: "
 echo.
+
+goto str
 :1
+del hash.txt
+:str
+Echo Enter string, type CTRL+Z in the same line, enter.
+copy con hash.txt
+echo.
+
 for /f "delims=|" %%x IN ('find "/HASH" hash.txt') DO (
 if "[%%x]"=="[/HASH]" (goto 0)
 )
@@ -14,9 +21,8 @@ echo %hash%:%%x
 )
 
 certutil -hashfile hash.txt "%hash%" | find /v "hash"
-pause>nul
 echo.
 
-goto 1
+goto :1
 
 exit
