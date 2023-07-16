@@ -23,6 +23,6 @@ echo %hash%:%%x
 certutil -hashfile hash.txt "%hash%" | find /v "hash"
 echo.
 
-goto :1
+goto 1
 
 exit
